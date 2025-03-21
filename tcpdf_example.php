@@ -37,5 +37,18 @@ $pdf->AddPage();
 $text = "これは日本語のPDFサンプルです。\nTCPDFを使用して作成されました。";
 $pdf->Write(0, $text, '', 0, 'L', true, 0, false, false, 0);
 
+// QRコードを生成
+$qr_text = "Hello, world!";
+$style = array(
+    'border' => 0,
+    'vpadding' => 'auto',
+    'hpadding' => 'auto',
+    'fgcolor' => array(0,0,0),
+    'bgcolor' => false, // 背景色
+    'module_width' => 1, // 単位あたりのモジュール幅
+    'module_height' => 1 // 単位あたりのモジュール高さ
+);
+$pdf->write2DBarcode($qr_text, 'QRCODE,L', 10, 50, 50, 50, $style, 'N');
+
 // PDFファイルを出力
 $pdf->Output('japanese_pdf_sample.pdf', 'I');
